@@ -7,7 +7,7 @@
     "CLI"
   ],
   "homepage": "https://webqit.io/tooling/oohtml-cli",
-  "version": "0.1.21",
+  "version": "0.1.22-0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "type": "module",
   "main": "index.js",
   "bin": {
-    "oohtml": "./src/index.js"
+    "oohtml": "src/index.js"
   },
   "scripts": {
     "postversion": "npm publish",
