@@ -16,7 +16,7 @@ import * as DotJson from '@webqit/backpack/src/dotfiles/DotJson.js';
  * @return object
  */
 export async function read(flags = {}, params = {}) {
-    const config = DotJson.read(Path.join(params.ROOT || '', './.oohtml-cli/config/bundler.json'));
+    const config = DotJson.read(Path.join(params.ROOT || '', './.webqit/oohtml-cli/config/bundler.json'));
     return _merge({
         ENTRY_DIR: './',
         OUTPUT_FILE: './bundle.html',
@@ -48,7 +48,7 @@ export async function read(flags = {}, params = {}) {
  * @return void
  */
 export async function write(data, flags = {}, params = {}) {
-    DotJson.write(data, Path.join(params.ROOT || '', './.oohtml-cli/config/bundler.json'));
+    DotJson.write(data, Path.join(params.ROOT || '', './.webqit/oohtml-cli/config/bundler.json'));
 };
 
 /**

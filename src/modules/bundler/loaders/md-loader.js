@@ -17,9 +17,27 @@ export default function(resource, params, args, recieved, meta, next) {
         // Or let the flow continue
         return next(recieved);
     }
-    var showdownParams = {metadata: true};
+    // --------------
+    var fixLinksToReadme = () => ({
+        type: 'lang', 
+        regex: /\[(.*)\]\((.*)?\/readme\.md(.*)?\)/ig, 
+        replace: '[$1]($2$3)',
+    });
+    var fixRelativeUrls = () => ({
+        type: 'lang', 
+        filter: text => {
+            return text.replace(/\[(.*)\]\((.*)?\)/g, (match, matchGroup1, matchGroup2) => {
+                if (!matchGroup2.match(/^(http:|https:|file:|ftp:|\/\/)/)) {
+                    return `[${matchGroup1}](${Path.join(args.base_url || '', Path.dirname(resource), matchGroup2)})`;
+                }
+                return match;
+            });
+        },
+    });
+    // --------------
+    var showdownParams = {metadata: true, extensions: [ fixLinksToReadme, fixRelativeUrls ]};
     if (args.code_highlighting) {
-        showdownParams.extensions = [ ShowdownHighlight ];
+        showdownParams.extensions.push(ShowdownHighlight);
     }
     var markdown = new Showdown.Converter(showdownParams);
     if (args.flavor) {

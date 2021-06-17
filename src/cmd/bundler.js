@@ -91,7 +91,7 @@ export async function bundle(Ui, flags = {}, params = {}) {
 			if (!_isEmpty(errors)) {
 				Ui.error(Ui.f`Error - ${resource}:`);
 				Object.keys(errors).forEach(src => {
-					Ui.info(Ui.f`  [${src}] ${Ui.style.err(error[src])}`);
+					Ui.info(Ui.f`  [${src}] ${Ui.style.err(errors[src])}`);
 				});
 			} else {
 				if (content) {
@@ -106,7 +106,7 @@ export async function bundle(Ui, flags = {}, params = {}) {
 	// -------------------------------
 	var ENTRY_DIR = config.ENTRY_DIR;
 	if (config.EXPLODE_ENTRY_DIR) {
-		if (Path.isAbsolute(config.OUTPUT_FILE) && !config.OUTPUT_FILE.match(/\[name\]/)) {
+		if (Path.isAbsolute(config.OUTPUT_FILE) && !config.OUTPUT_FILE.matches(/\[name\]/)) {
 			throw new Error('OUTPUT_FILE format must be in template format; must contain a [name] placeholder.');
 		}
 		ENTRY_DIR = {};

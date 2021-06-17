@@ -19,7 +19,11 @@
   "type": "module",
   "main": "index.js",
   "bin": {
-    "oohtml": "./index.js"
+    "oohtml": "./src/index.js"
+  },
+  "scripts": {
+    "postversion": "npm publish",
+    "postpublish": "git push && git push --tags"
   },
   "dependencies": {
     "@webqit/backpack": "0.0.3",
