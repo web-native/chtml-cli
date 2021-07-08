@@ -26,9 +26,9 @@ export default function(resource, params, args, recieved, meta, next) {
     var fixRelativeUrls = () => ({
         type: 'lang', 
         filter: text => {
-            return text.replace(/\[(.*)\]\((.*)?\)/g, (match, matchGroup1, matchGroup2) => {
-                if (!matchGroup2.match(/^(http:|https:|file:|ftp:|\/\/)/)) {
-                    return `[${matchGroup1}](${Path.join(args.base_url || '', Path.dirname(resource), matchGroup2)})`;
+            return text.replace(/(?<=\])\(([^\)]*)?\)/g, (match, matchGroup1) => {
+                if (!matchGroup1.match(/^(\/|#|http:|https:|file:|ftp:)/)) {
+                    return `(${Path.join(args.base_url || '', Path.dirname(resource), matchGroup1)})`;
                 }
                 return match;
             });

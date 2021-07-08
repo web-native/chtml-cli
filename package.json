@@ -30,7 +30,7 @@
     "@webqit/util": "^0.7.0",
     "jsdom": "^16.4.0",
     "showdown": "^1.9.1",
-    "showdown-highlight": "^2.1.6"
+    "showdown-highlight": "^2.1.8"
   },
   "author": "Oxford Harrison <oxharris.dev@gmail.com>",
   "maintainers": [
